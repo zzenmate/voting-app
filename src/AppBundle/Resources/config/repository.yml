@@ -1,0 +1,6 @@
+services:
+    vote.repository:
+        class: AppBundle\Repository\VoteRepository
+        factory: [ "@doctrine", 'getRepository' ]
+        arguments:
+            - AppBundle\Entity\Vote

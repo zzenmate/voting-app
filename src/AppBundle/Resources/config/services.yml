@@ -1,0 +1,10 @@
+services:
+    app.matching:
+        class: AppBundle\Service\MatchingService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
+    app.zone:
+        class: AppBundle\Service\ZoneService
+        arguments:
+            - "@vote.repository"

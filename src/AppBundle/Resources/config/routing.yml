@@ -1,0 +1,11 @@
+api_session:
+    resource: AppBundle\Controller\API\SessionController
+    type: rest
+
+api_vote:
+    resource: AppBundle\Controller\API\VoteController
+    type: rest
+
+api_zone:
+    resource: AppBundle\Controller\API\ZoneController
+    type: rest
