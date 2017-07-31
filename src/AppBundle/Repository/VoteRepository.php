@@ -65,7 +65,7 @@ class VoteRepository extends EntityRepository
                 WHERE vote_results_1.deputy_number = :deputy_id 
                 AND vote_results_2.deputy_number != :deputy_id
                 AND vote_results_1.result != 'absent'
-                AND vote_results_1.result != 'not_voted'
+                AND vote_results_1.result 'not_voted'
                 GROUP BY vote_results_2.deputy_number
                 ORDER BY count_identical_votes DESC 
                 LIMIT $limit";
@@ -75,33 +75,5 @@ class VoteRepository extends EntityRepository
         $stmt->execute($params);
 
         return $stmt->fetchAll();
-    }
-
-    /**
-     * Get count votes by deputy
-     *
-     * @param integer $id ID of deputy
-     *
-     * @return int
-     */
-    public function getCountVotesByDeputy($id)
-    {
-        $sql = "SELECT count(*) as count_votes 
-                FROM vote_results
-                WHERE deputy_number = :deputy_id
-                AND vote_results.result != 'absent'
-                AND vote_results.result != 'not_voted'";
-
-        $params['deputy_id'] = (int) $id;
-        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
-        $stmt->execute($params);
-
-        $result = $stmt->fetch();
-
-        if (array_key_exists('count_votes', $result)) {
-            return (int) $result['count_votes'];
-        }
-
-        return 0;
     }
 }

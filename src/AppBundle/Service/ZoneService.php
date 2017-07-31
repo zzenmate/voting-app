@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Repository\VoteRepository;
+use AppBundle\Repository\VoteResultRepository;
 
 /**
  * Zone Service
@@ -12,14 +13,19 @@ class ZoneService
     /** @var VoteRepository $voteRepository */
     protected $voteRepository;
 
+    /** @var VoteResultRepository $voteResultRepository */
+    protected $voteResultRepository;
+
     /**
      * Constructor
      *
-     * @param VoteRepository $voteRepository Vote repository
+     * @param VoteRepository       $voteRepository       Vote repository
+     * @param VoteResultRepository $voteResultRepository Vote result repository
      */
-    public function __construct(VoteRepository $voteRepository)
+    public function __construct(VoteRepository $voteRepository, VoteResultRepository $voteResultRepository)
     {
-        $this->voteRepository = $voteRepository;
+        $this->voteRepository       = $voteRepository;
+        $this->voteResultRepository = $voteResultRepository;
     }
 
     /**
@@ -51,6 +57,6 @@ class ZoneService
      */
     public function getTotalCountVotesByDeputy($deputyID)
     {
-        return $this->voteRepository->getCountVotesByDeputy($deputyID);
+        return $this->voteResultRepository->getCountVotesByDeputyNumber($deputyID);
     }
 }

@@ -1,6 +1,8 @@
 voting-app
 ==========
 
+## Task for qualification DevChallange 11
+
 ## Information
 
 ApiDoc URL: http://your_url/api/doc
